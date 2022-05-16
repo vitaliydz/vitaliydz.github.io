@@ -10,7 +10,7 @@
     <style>
       body {
         margin: 0;
-        padding: 2rem;
+        padding: 0rem;
         overflow: hidden;
       }
 
@@ -18,6 +18,55 @@
         margin: auto;
         height: auto;
         position: absolute;
+      }
+
+      #game {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+      }
+
+      .left-buttons,
+      .right-buttons {
+        display: none;
+      }
+
+      .mobile .left-buttons,
+      .mobile .right-buttons {
+        display: grid;
+        flex-grow: 1;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+        align-self: end;
+        padding: 0.5rem;
+      }
+
+      .play-button {
+        height: 70px;
+        width: 70px;
+        border-radius: 50%;
+      }
+
+      .play-button.left,
+      .play-button.b {
+        grid-row: 2/3;
+      }
+
+      .play-button.up,
+      .play-button.y {
+        grid-column: 2/3;
+      }
+
+      .play-button.right,
+      .play-button.a {
+        grid-row: 2/3;
+        grid-column: 3;
+      }
+
+      .play-button.down,
+      .play-button.x {
+        grid-row: 3;
+        grid-column: 2/3;
       }
 
       .hidden {
@@ -46,26 +95,55 @@
       .level:hover {
         background-color: beige;
       }
+
+      .error-orientation {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background-color: aliceblue;
+        text-align: center;
+      }
     </style>
-  <script defer src="main.js?4fd3f0e4f9f222cd4526"></script></head>
+  <script defer src="main.js?e77e18916bc3874b7d1d"></script></head>
 
   <body>
-    <tab id="menu" class="hidden">
-      <h2>Please select a level:</h2>
-      <div class="levels">
-        <div class="level">1</div>
-        <div class="level">2</div>
-        <div class="level">3</div>
-        <div class="level">4</div>
-        <div class="level">5</div>
+    <main>
+      <tab id="menu" class="hidden">
+        <h2>Please select a level:</h2>
+        <div class="levels">
+          <div class="level">1</div>
+          <div class="level">2</div>
+          <div class="level">3</div>
+          <div class="level">4</div>
+          <div class="level">5</div>
+        </div>
+      </tab>
+      <tab id="game" class="hidden">
+        <div class="left-buttons">
+          <button class="play-button left">left</button>
+          <button class="play-button up">up</button>
+          <button class="play-button right">right</button>
+          <button class="play-button down">down</button>
+        </div>
+        <div class="game-canvas"></div>
+        <div class="right-buttons">
+          <button class="play-button x">x</button>
+          <button class="play-button y">y</button>
+          <button class="play-button b">b</button>
+          <button class="play-button a">a</button>
+        </div>
+      </tab>
+      <tab id="result" class="hidden">
+        <h2>Results</h2>
+        <p>Result of the game: <span class="level-result"></span></p>
+        <p>You have earned: <span class="level-points"></span> points</p>
+        <button class="result-proceed">Proceed</button>
+      </tab>
+      <div class="error-orientation hidden">
+        <p>Game will work only in landscape orientation</p>
       </div>
-    </tab>
-    <tab id="game" class="hidden"></tab>
-    <tab id="result" class="hidden">
-      <h2>Results</h2>
-      <p>Result of the game: <span class="level-result"></span></p>
-      <p>You have earned: <span class="level-points"></span> points</p>
-      <button class="result-proceed">Proceed</button>
-    </tab>
+    </main>
   </body>
 </html>
